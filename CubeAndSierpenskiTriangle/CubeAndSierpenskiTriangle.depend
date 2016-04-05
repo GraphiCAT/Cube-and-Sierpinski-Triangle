@@ -1,0 +1,31 @@
+# depslib dependency file v1.0
+1459841616 source:f:\itb\semester_6\if3260 grafika komputer\cube-and-sierpinski-triangle\cubeandsierpenskitriangle\drawhandler.cpp
+	"DrawHandler.h"
+	"Point3D.h"
+
+1459841466 f:\itb\semester_6\if3260 grafika komputer\cube-and-sierpinski-triangle\cubeandsierpenskitriangle\drawhandler.h
+	<windows.h>
+	<GL/glut.h>
+
+1426324528 c:\tdm-gcc-64\freeglut\include\gl\glut.h
+	"freeglut_std.h"
+
+1426324528 c:\tdm-gcc-64\freeglut\include\gl\freeglut_std.h
+	<windows.h>
+	<EGL/egl.h>
+	<GLES/gl.h>
+	<GLES2/gl2.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<stdlib.h>
+
+1459841571 source:f:\itb\semester_6\if3260 grafika komputer\cube-and-sierpinski-triangle\cubeandsierpenskitriangle\main.cpp
+	<windows.h>
+	<GL/glut.h>
+	"DrawHandler.h"
+
+1459836470 f:\itb\semester_6\if3260 grafika komputer\cube-and-sierpinski-triangle\cubeandsierpenskitriangle\point3d.h
+	<iostream>
+
