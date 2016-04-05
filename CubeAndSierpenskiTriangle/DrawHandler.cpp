@@ -1,5 +1,6 @@
 #include "DrawHandler.h"
 #include "Point3D.h"
+#include "Point.h"
 
 
 GLfloat angleCube = 0.0f;     // Rotational angle for cube [NEW]
@@ -13,6 +14,16 @@ void initGL() {
    glDepthFunc(GL_LEQUAL);    // Set the type of depth-test
    glShadeModel(GL_SMOOTH);   // Enable smooth shading
    glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);  // Nice perspective corrections
+}
+
+void myinit()
+{
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    gluOrtho2D(-2.0, 2.0, -2.0, 2.0);
+    glMatrixMode(GL_MODELVIEW);
+    glClearColor (1.0, 1.0, 1.0,1.0);
+    glColor3f(0.0,0.0,0.0);
 }
 
 // Setup our Opengl world, called once at startup.
@@ -129,25 +140,58 @@ void displayPyramid(){
    glFlush();  // Render now
 }
 
-void displaySierpinskiTriangle() {
-    // Draw a Red 1x1 Square centered at origin
-   glBegin(GL_TRIANGLES);
-        glColor3f(1.0f, 0.0f, 0.0f);
-          glVertex2f(-1.0f,-0.25f);
-          glVertex2f(-0.5f,-0.25f);
-          glVertex2f(-0.75f,0.25f);
-        glColor3f(0.0f, 1.0f, 0.0f);
-          glVertex2f(-0.25f,-0.25f);
-          glVertex2f(0.25f,-0.25f);
-          glVertex2f(0.0f,0.25f);
-        glColor3f(0.0f, 0.0f, 1.0f);
-          glVertex2f(0.5f,-0.25f);
-          glVertex2f(1.0f,-0.25f);
-          glVertex2f(0.75f,0.25f);
+
+float red = 0;
+float green = 1;
+float blue = 0;
+
+void triangle( point2 a, point2 b, point2 c)
+/* display one triangle  */
+{
+    red += 0.008;
+    green -= 0.005;
+    blue += 0.005;
+    glColor3f(red, green, blue);
+    glBegin(GL_TRIANGLES);
+    glVertex2fv(a);
+    glVertex2fv(b);
+    glVertex2fv(c);
     glEnd();
+}
 
+Point p1(247,9);
+Point p2(487,433);
+Point p3(11,431);
 
-   glFlush();  // Render now
+point2 v[] = {{p1.convertToOpenGLCoordinates(p1,500,500).getX(),p1.convertToOpenGLCoordinates(p1,500,500).getY()},
+{p2.convertToOpenGLCoordinates(p2,500,500).getX(),p2.convertToOpenGLCoordinates(p2,500,500).getY()},
+{p3.convertToOpenGLCoordinates(p3,500,500).getX(),p3.convertToOpenGLCoordinates(p3,500,500).getY()}};
+
+void divide_triangle(point2 a, point2 b, point2 c,int m)
+{
+    /* triangle subdivision using vertex coordinates */
+
+    point2 v0, v1, v2;
+    int j;
+    if(m>0)
+    {
+        for(j=0; j<2; j++) v0[j]=(a[j]+b[j])/2;
+        for(j=0; j<2; j++) v1[j]=(a[j]+c[j])/2;
+        for(j=0; j<2; j++) v2[j]=(b[j]+c[j])/2;
+        divide_triangle(a, v0, v1, m-1);
+        divide_triangle(c, v1, v2, m-1);
+        divide_triangle(b, v2, v0, m-1);
+    }
+    else{
+        triangle(a,b,c);
+    };
+    /* draw triangle at end of recursion */
+}
+
+void displaySierpinskiTriangle(int n) {
+    glClear(GL_COLOR_BUFFER_BIT);
+    divide_triangle(v[0], v[1], v[2], n);
+    glFlush();
 }
 
 void display(){
@@ -169,7 +213,8 @@ void display_1(void)
 // Draw our world
 void display_2(void)
 {
-    displaySierpinskiTriangle();
+    int n = 5;
+    displaySierpinskiTriangle(n);
 }
 
 // This is called when the window has been resized.

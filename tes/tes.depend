@@ -1,6 +1,5 @@
 # depslib dependency file v1.0
-1459837557 source:f:\itb\semester_6\if3260 grafika komputer\cube-and-sierpinski-triangle\tes\main.cpp
-	<windows.h>
+1459842312 source:f:\itb\semester_6\if3260 grafika komputer\cube-and-sierpinski-triangle\tes\main.cpp
 	<GL/glut.h>
 
 1426324528 c:\tdm-gcc-64\freeglut\include\gl\glut.h

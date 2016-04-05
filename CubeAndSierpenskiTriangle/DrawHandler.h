@@ -3,20 +3,20 @@
 #include <windows.h>  // for MS Windows
 #include <GL/glut.h>  // GLUT, include glu.h and gl.h
 
+typedef GLfloat point2[2];
+
 /* Initialize OpenGL Graphics */
 void initGL();
-// Setup our Opengl world, called once at startup.
 void init();
+void myinit();
 void displayCube();
 void displayPyramid();
-void displaySierpinskiTriangle();
-// Draw our world to first window
+void triangle( point2 a, point2 b, point2 c);
+void divide_triangle(point2 a, point2 b, point2 c,int m);
+void displaySierpinskiTriangle(int n);
 void display_1(void);
-// Draw our world to second window
 void display_2(void);
-// This is called when the window has been resized.
 void reshape_1 (int w, int h);
-// This is called when the window has been resized.
 void reshape_2 (int w, int h);
 void reshape(GLsizei width, GLsizei height);
 

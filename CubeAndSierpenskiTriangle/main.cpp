@@ -24,11 +24,11 @@ int main(int argc, char** argv) {
    display_1();
 
 
-   glutInitWindowSize (640, 480);
-   glutInitWindowPosition (650, 50);
+   glutInitWindowSize (500, 500);
+   glutInitWindowPosition (550, 50);
    window_2 = glutCreateWindow (argv[0]);
    glutSetWindowTitle("Sierpinski Triangle");
-   init();
+   myinit();
    glutDisplayFunc(display_2);
    glutReshapeFunc(reshape_2);
 
