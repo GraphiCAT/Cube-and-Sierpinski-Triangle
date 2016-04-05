@@ -16,7 +16,7 @@ void initGL() {
    glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);  // Nice perspective corrections
 }
 
-void myinit()
+void init()
 {
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
@@ -24,14 +24,6 @@ void myinit()
     glMatrixMode(GL_MODELVIEW);
     glClearColor (1.0, 1.0, 1.0,1.0);
     glColor3f(0.0,0.0,0.0);
-}
-
-// Setup our Opengl world, called once at startup.
-void init()
-{
-   glClearColor(0.0f, 0.0f, 0.0f, 1.0f); // Set background color to black and opaque
-   glClear (GL_COLOR_BUFFER_BIT);  //Clear the screen
-
 }
 
 void displayCube() {
@@ -102,45 +94,6 @@ void timer(int value) {
    glutTimerFunc(refreshMills, timer, 0); // next timer call milliseconds later
 }
 
-void displayPyramid(){
-    // Render a pyramid consists of 4 triangles
-   glBegin(GL_TRIANGLES);           // Begin drawing the pyramid with 4 triangles
-      // Front
-      glColor3f(1.0f, 0.0f, 0.0f);     // Red
-      glVertex3f( 0.0f, 1.0f, 0.0f);
-      glColor3f(0.0f, 1.0f, 0.0f);     // Green
-      glVertex3f(-1.0f, -1.0f, 1.0f);
-      glColor3f(0.0f, 0.0f, 1.0f);     // Blue
-      glVertex3f(1.0f, -1.0f, 1.0f);
-
-      // Right
-      glColor3f(1.0f, 0.0f, 0.0f);     // Red
-      glVertex3f(0.0f, 1.0f, 0.0f);
-      glColor3f(0.0f, 0.0f, 1.0f);     // Blue
-      glVertex3f(1.0f, -1.0f, 1.0f);
-      glColor3f(0.0f, 1.0f, 0.0f);     // Green
-      glVertex3f(1.0f, -1.0f, -1.0f);
-
-      // Back
-      glColor3f(1.0f, 0.0f, 0.0f);     // Red
-      glVertex3f(0.0f, 1.0f, 0.0f);
-      glColor3f(0.0f, 1.0f, 0.0f);     // Green
-      glVertex3f(1.0f, -1.0f, -1.0f);
-      glColor3f(0.0f, 0.0f, 1.0f);     // Blue
-      glVertex3f(-1.0f, -1.0f, -1.0f);
-
-      // Left
-      glColor3f(1.0f,0.0f,0.0f);       // Red
-      glVertex3f( 0.0f, 1.0f, 0.0f);
-      glColor3f(0.0f,0.0f,1.0f);       // Blue
-      glVertex3f(-1.0f,-1.0f,-1.0f);
-      glColor3f(0.0f,1.0f,0.0f);       // Green
-      glVertex3f(-1.0f,-1.0f, 1.0f);
-   glEnd();   // Done drawing the pyramid
-   glFlush();  // Render now
-}
-
-
 float red = 0;
 float green = 1;
 float blue = 0;
@@ -170,7 +123,6 @@ point2 v[] = {{p1.convertToOpenGLCoordinates(p1,500,500).getX(),p1.convertToOpen
 void divide_triangle(point2 a, point2 b, point2 c,int m)
 {
     /* triangle subdivision using vertex coordinates */
-
     point2 v0, v1, v2;
     int j;
     if(m>0)
@@ -194,16 +146,6 @@ void displaySierpinskiTriangle(int n) {
     glFlush();
 }
 
-void display(){
-   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear color and depth buffers
-   glMatrixMode(GL_MODELVIEW);     // To operate on model-view matrix
-
-   displayCube();
-   displayPyramid();
-
-   glutSwapBuffers();  // Swap the front and back frame buffers (double buffering)
-}
-
 // Draw our world
 void display_1(void)
 {
@@ -218,14 +160,6 @@ void display_2(void)
 }
 
 // This is called when the window has been resized.
-void reshape_1 (int w, int h)
-{
-   glViewport (0, 0, (GLsizei) w, (GLsizei) h);
-   glMatrixMode (GL_PROJECTION);
-   glLoadIdentity ();
-}
-
-// This is called when the window has been resized.
 void reshape_2 (int w, int h)
 {
    glViewport (0, 0, (GLsizei) w, (GLsizei) h);
@@ -235,7 +169,7 @@ void reshape_2 (int w, int h)
 
 /* Handler for window re-size event. Called back when the window first appears and
    whenever the window is re-sized with its new width and height */
-void reshape(GLsizei width, GLsizei height) {  // GLsizei for non-negative integer
+void reshape_1(GLsizei width, GLsizei height) {  // GLsizei for non-negative integer
    // Compute aspect ratio of the new window
    if (height == 0) height = 1;                // To prevent divide by 0
    GLfloat aspect = (GLfloat)width / (GLfloat)height;

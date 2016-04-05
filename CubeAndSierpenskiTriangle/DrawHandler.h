@@ -8,17 +8,14 @@ typedef GLfloat point2[2];
 /* Initialize OpenGL Graphics */
 void initGL();
 void init();
-void myinit();
 void displayCube();
-void displayPyramid();
 void triangle( point2 a, point2 b, point2 c);
 void divide_triangle(point2 a, point2 b, point2 c,int m);
 void displaySierpinskiTriangle(int n);
 void display_1(void);
 void display_2(void);
-void reshape_1 (int w, int h);
+void reshape_1(GLsizei width, GLsizei height);
 void reshape_2 (int w, int h);
-void reshape(GLsizei width, GLsizei height);
 
 void timer(int value);
 

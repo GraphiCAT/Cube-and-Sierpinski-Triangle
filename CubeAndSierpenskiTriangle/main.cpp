@@ -18,7 +18,7 @@ int main(int argc, char** argv) {
    window_1 = glutCreateWindow (argv[0]);
    glutSetWindowTitle(title);
    glutDisplayFunc(display_1);
-   glutReshapeFunc(reshape);
+   glutReshapeFunc(reshape_1);
    initGL();
    glutTimerFunc(0, timer, 0);
    display_1();
@@ -28,7 +28,7 @@ int main(int argc, char** argv) {
    glutInitWindowPosition (550, 50);
    window_2 = glutCreateWindow (argv[0]);
    glutSetWindowTitle("Sierpinski Triangle");
-   myinit();
+   init();
    glutDisplayFunc(display_2);
    glutReshapeFunc(reshape_2);
 
