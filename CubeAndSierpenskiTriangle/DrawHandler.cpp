@@ -97,38 +97,67 @@ void timer(int value) {
    glutTimerFunc(refreshMills, timer, 0); // next timer call milliseconds later
 }
 
-float red = 1;
-float green = 0;
-float blue = 0;
+float red = 229.0/255.0;
+float green = 0.0;
+float blue = 81.0/255.0;
 
 void triangle( point2 a, point2 b, point2 c)
 /* display one triangle  */
 {
-    red = red + 0.010/iteration;
-    green = green - 0.010/iteration;
-    blue = blue + 0.010/iteration;
-
     glColor3f(red, green, blue);
     glBegin(GL_TRIANGLES);
     glVertex2fv(a);
     glVertex2fv(b);
     glVertex2fv(c);
     glEnd();
+
+    if (red > 0) {
+        red = red - (229.0/255.0)/iteration;
+        green = green + (148.0/255.0)/iteration;
+        blue = blue + (180.0/255.0)/iteration;
+    } else {
+        red = 229.0/255.0;
+        green = 0;
+        blue = 81.0/255.0;
+    }
+
+    /* if (red > 0 && blue < 0.25) {
+        red = red - 0.25;
+        green = green + 0.25;
+    } else if (green > 0 && red < 0.25) {
+        green = green - 0.25;
+        blue = blue + 0.25;
+    } else if (blue > 0 && green < 0.25) {
+        blue = blue - 0.25;
+        red = red + 0.25;
+    } */
 }
+
+
+float red_point = 0.0/255.0;
+float green_point = 166.0/255.0;
+float blue_point  = 229.0/255.0;
 
 void triangle_point( point2 a, point2 b, point2 c)
 /* display one triangle  */
 {
-    red += 0.008;
-    green -= 0.005;
-    blue += 0.005;
-    glColor3f(red, green, blue);
+    glColor3f(red_point, green_point, blue_point);
     glBegin(GL_LINES);
     glVertex2fv(a);
     glVertex2fv(b);
     glVertex2fv(c);
     glVertex2fv(a);
     glEnd();
+
+    if (red_point < (175.0/255.0)) {
+        red_point = red_point + (175.0/255.0)/iteration;
+        green_point = green_point + (77.0/255.0)/iteration;
+        blue_point = blue_point - (131.0/255.0)/iteration;
+    } else {
+        red_point = 0.0/255.0;
+        green_point = 166.0/255.0;
+        blue_point  = 229.0/255.0;
+    }
 }
 
 Point p1(247,9);

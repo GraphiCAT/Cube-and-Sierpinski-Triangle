@@ -63,27 +63,5 @@ int main(int argc, char** argv) {
        }
    }
    printGoodbye();
-
-   /* glutInit(&argc, argv);
-   glutInitWindowSize(640, 480);
-   glutInitWindowPosition(50, 50);
-   window_1 = glutCreateWindow (argv[0]);
-   glutSetWindowTitle(title);
-   glutDisplayFunc(display_1);
-   glutReshapeFunc(reshape_1);
-   initGL();
-   glutTimerFunc(0, timer, 0);
-   display_1();
-
-
-   glutInitWindowSize (500, 500);
-   glutInitWindowPosition (550, 50);
-   window_2 = glutCreateWindow (argv[0]);
-   glutSetWindowTitle("Sierpinski Triangle");
-   init();
-   glutDisplayFunc(display_2);
-   glutReshapeFunc(reshape_2);
-
-   glutMainLoop(); */
    return 0;
 }

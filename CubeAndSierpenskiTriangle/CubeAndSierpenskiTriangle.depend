@@ -33,7 +33,7 @@
 1459843325 f:\itb\semester_6\if3260 grafika komputer\cube-and-sierpinski-triangle\cubeandsierpenskitriangle\point.h
 	<iostream>
 
-1460224714 source:d:\tifani warnita\schools - college\itb\hmif itb\informatics engineering\6th semester\if3260 - computer graphics\assignments\cube-and-sierpinski-triangle\cubeandsierpenskitriangle\main.cpp
+1460227378 source:d:\tifani warnita\schools - college\itb\hmif itb\informatics engineering\6th semester\if3260 - computer graphics\assignments\cube-and-sierpinski-triangle\cubeandsierpenskitriangle\main.cpp
 	<cstdlib>
 	<windows.h>
 	<GL/glut.h>
@@ -58,7 +58,7 @@
 	<windows.h>
 	<GL/glut.h>
 
-1460226613 source:d:\tifani warnita\schools - college\itb\hmif itb\informatics engineering\6th semester\if3260 - computer graphics\assignments\cube-and-sierpinski-triangle\cubeandsierpenskitriangle\drawhandler.cpp
+1460227632 source:d:\tifani warnita\schools - college\itb\hmif itb\informatics engineering\6th semester\if3260 - computer graphics\assignments\cube-and-sierpinski-triangle\cubeandsierpenskitriangle\drawhandler.cpp
 	"DrawHandler.h"
 	"Point3D.h"
 	"Point.h"
