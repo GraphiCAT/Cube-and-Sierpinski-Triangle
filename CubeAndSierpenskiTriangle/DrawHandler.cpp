@@ -2,9 +2,12 @@
 #include "Point3D.h"
 #include "Point.h"
 
+const int TRIANGLE = 0;
+const int TRIANGLE_POINT = 1;
 
 GLfloat angleCube = 0.0f;     // Rotational angle for cube [NEW]
 int refreshMills = 15;        // refresh interval in milliseconds [NEW]
+int iteration = 1;
 
 /* Initialize OpenGL Graphics */
 void initGL() {
@@ -94,21 +97,37 @@ void timer(int value) {
    glutTimerFunc(refreshMills, timer, 0); // next timer call milliseconds later
 }
 
-float red = 0;
-float green = 1;
+float red = 1;
+float green = 0;
 float blue = 0;
 
 void triangle( point2 a, point2 b, point2 c)
+/* display one triangle  */
+{
+    red = red + 0.010/iteration;
+    green = green - 0.010/iteration;
+    blue = blue + 0.010/iteration;
+
+    glColor3f(red, green, blue);
+    glBegin(GL_TRIANGLES);
+    glVertex2fv(a);
+    glVertex2fv(b);
+    glVertex2fv(c);
+    glEnd();
+}
+
+void triangle_point( point2 a, point2 b, point2 c)
 /* display one triangle  */
 {
     red += 0.008;
     green -= 0.005;
     blue += 0.005;
     glColor3f(red, green, blue);
-    glBegin(GL_TRIANGLES);
+    glBegin(GL_LINES);
     glVertex2fv(a);
     glVertex2fv(b);
     glVertex2fv(c);
+    glVertex2fv(a);
     glEnd();
 }
 
@@ -120,7 +139,7 @@ point2 v[] = {{p1.convertToOpenGLCoordinates(p1,500,500).getX(),p1.convertToOpen
 {p2.convertToOpenGLCoordinates(p2,500,500).getX(),p2.convertToOpenGLCoordinates(p2,500,500).getY()},
 {p3.convertToOpenGLCoordinates(p3,500,500).getX(),p3.convertToOpenGLCoordinates(p3,500,500).getY()}};
 
-void divide_triangle(point2 a, point2 b, point2 c,int m)
+void divide_triangle(point2 a, point2 b, point2 c, int m, int type)
 {
     /* triangle subdivision using vertex coordinates */
     point2 v0, v1, v2;
@@ -130,19 +149,22 @@ void divide_triangle(point2 a, point2 b, point2 c,int m)
         for(j=0; j<2; j++) v0[j]=(a[j]+b[j])/2;
         for(j=0; j<2; j++) v1[j]=(a[j]+c[j])/2;
         for(j=0; j<2; j++) v2[j]=(b[j]+c[j])/2;
-        divide_triangle(a, v0, v1, m-1);
-        divide_triangle(c, v1, v2, m-1);
-        divide_triangle(b, v2, v0, m-1);
+        divide_triangle(a, v0, v1, m-1, type);
+        divide_triangle(c, v1, v2, m-1, type);
+        divide_triangle(b, v2, v0, m-1, type);
     }
     else{
-        triangle(a,b,c);
+         if (type == TRIANGLE)
+            triangle(a,b,c);
+        else // POINT
+            triangle_point(a,b,c);
     };
     /* draw triangle at end of recursion */
 }
 
-void displaySierpinskiTriangle(int n) {
+void displaySierpinskiTriangle(int n, int type) {
     glClear(GL_COLOR_BUFFER_BIT);
-    divide_triangle(v[0], v[1], v[2], n);
+    divide_triangle(v[0], v[1], v[2], n, type);
     glFlush();
 }
 
@@ -155,12 +177,25 @@ void display_1(void)
 // Draw our world
 void display_2(void)
 {
-    int n = 5;
-    displaySierpinskiTriangle(n);
+    displaySierpinskiTriangle(iteration, TRIANGLE);
+}
+
+// Draw our world
+void display_3(void)
+{
+    displaySierpinskiTriangle(iteration, TRIANGLE_POINT);
 }
 
 // This is called when the window has been resized.
 void reshape_2 (int w, int h)
+{
+   glViewport (0, 0, (GLsizei) w, (GLsizei) h);
+   glMatrixMode (GL_PROJECTION);
+   glLoadIdentity ();
+}
+
+// This is called when the window has been resized.
+void reshape_3 (int w, int h)
 {
    glViewport (0, 0, (GLsizei) w, (GLsizei) h);
    glMatrixMode (GL_PROJECTION);
@@ -182,4 +217,40 @@ void reshape_1(GLsizei width, GLsizei height) {  // GLsizei for non-negative int
    glLoadIdentity();             // Reset
    // Enable perspective projection with fovy, aspect, zNear and zFar
    gluPerspective(45.0f, aspect, 0.1f, 100.0f);
+}
+
+void setIteration(int itr) {
+    iteration = itr;
+}
+
+void printLogo() {
+    char fr = 176;
+    char fr_array[33];
+    int i;
+    for (i=0; i<33; i++) {
+        fr_array[i] = fr;
+    }
+    fr_array[i] = 0;
+    std::cout << "                     " << fr_array << std::endl;
+    std::cout << std::endl;
+    std::cout << "                     " << "  Welcome to GraphiCAT Program!  " << std::endl;
+    std::cout << std::endl;
+    std::cout << "                     " << fr_array << std::endl;
+    std::cout << std::endl;
+    std::cout << std::endl;
+}
+
+void printMenu() {
+    std::cout << "Please select from the programs listed below:" << std::endl;
+    std::cout << "1. Rainbow cube" << std::endl;
+    std::cout << "2. Sierpinski Sieve Points" << std::endl;
+    std::cout << "3. Sierpinski Sieve" << std::endl;
+    std::cout << "0. Exit :(" << std::endl;
+}
+
+void printGoodbye() {
+   std::cout << std::endl;
+   std::cout << std::endl;
+   std::cout << std::endl;
+   std::cout << "                         ====== Bye-bye! :'( ======                         " << std::endl;
 }

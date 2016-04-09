@@ -33,3 +33,39 @@
 1459843325 f:\itb\semester_6\if3260 grafika komputer\cube-and-sierpinski-triangle\cubeandsierpenskitriangle\point.h
 	<iostream>
 
+1460224714 source:d:\tifani warnita\schools - college\itb\hmif itb\informatics engineering\6th semester\if3260 - computer graphics\assignments\cube-and-sierpinski-triangle\cubeandsierpenskitriangle\main.cpp
+	<cstdlib>
+	<windows.h>
+	<GL/glut.h>
+	"DrawHandler.h"
+
+1426324528 c:\mingw\include\gl\glut.h
+	"freeglut_std.h"
+
+1426324528 c:\mingw\include\gl\freeglut_std.h
+	<windows.h>
+	<EGL/egl.h>
+	<GLES/gl.h>
+	<GLES2/gl2.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<stdlib.h>
+
+1460224321 d:\tifani warnita\schools - college\itb\hmif itb\informatics engineering\6th semester\if3260 - computer graphics\assignments\cube-and-sierpinski-triangle\cubeandsierpenskitriangle\drawhandler.h
+	<iostream>
+	<windows.h>
+	<GL/glut.h>
+
+1460226613 source:d:\tifani warnita\schools - college\itb\hmif itb\informatics engineering\6th semester\if3260 - computer graphics\assignments\cube-and-sierpinski-triangle\cubeandsierpenskitriangle\drawhandler.cpp
+	"DrawHandler.h"
+	"Point3D.h"
+	"Point.h"
+
+1460217955 d:\tifani warnita\schools - college\itb\hmif itb\informatics engineering\6th semester\if3260 - computer graphics\assignments\cube-and-sierpinski-triangle\cubeandsierpenskitriangle\point3d.h
+	<iostream>
+
+1460217955 d:\tifani warnita\schools - college\itb\hmif itb\informatics engineering\6th semester\if3260 - computer graphics\assignments\cube-and-sierpinski-triangle\cubeandsierpenskitriangle\point.h
+	<iostream>
+
